@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Analysis</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        h2 {
+            color: #555;
+            border-bottom: 2px solid #ccc;
+            padding-bottom: 5px;
+        }
+        ul, ol {
+            padding-left: 20px;
+        }
+        ul li, ol li {
+            margin-bottom: 10px;
+        }
+        li span {
+            font-weight: bold;
+        }
+        /* Add hover effect on list items */
+        ul li:hover, ol li:hover {
+            background-color: #f0f0f0;
+        }
+        /* Style the main container */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Order Analysis</title>
+    </head>
+    <body>
+        <h1>Order Analysis</h1>
+    
+        <h2>Revenue by Month</h2>
+        <ul>
+        {% for item in revenue_by_month %}
+            <li>{{ item.month|date:"F Y" }}: ${{ item.total_revenue|floatformat:2 }}</li>
+        {% empty %}
+            <li>No data available</li>
+        {% endfor %}
+        </ul>
+    
+        <h2>Revenue by Product</h2>
+        <ul>
+        {% for item in revenue_by_product %}
+            <li>{{ item.product_name }} ({{ item.product_id }}): ${{ item.total_revenue|floatformat:2 }}</li>
+        {% empty %}
+            <li>No data available</li>
+        {% endfor %}
+        </ul>
+    
+        <h2>Revenue by Customer</h2>
+        <ul>
+        {% for item in revenue_by_customer %}
+            <li>Customer {{ item.customer_id }}: ${{ item.total_revenue|floatformat:2 }}</li>
+        {% empty %}
+            <li>No data available</li>
+        {% endfor %}
+        </ul>
+    
+        <h2>Top 10 Customers by Revenue</h2>
+        <ol>
+        {% for item in top_10_customers %}
+            <li>Customer {{ item.customer_id }}: ${{ item.total_revenue|floatformat:2 }}</li>
+        {% empty %}
+            <li>No data available</li>
+        {% endfor %}
+        </ol>
+    </body>
+    </html>
